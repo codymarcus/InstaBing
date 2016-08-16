@@ -1,0 +1,55 @@
+.error {
+	color: red;
+}
+
+.image-card {
+	width: 30%;
+}
+
+.addable {
+	cursor: pointer;
+}
+
+.addable img:hover {
+	filter: brightness(.5);
+	-webkit-filter: brightness(.5);
+}
+
+.image-wrapper {
+	height: 300px;
+}
+
+.search input {
+	margin: 40px 10%;
+	text-align: center;
+	width: 80%;
+}
+
+@media (min-width: 768px) {
+	.navbar .nav-item.sign-out {
+		float: right;
+	}
+}
+
+h2 {
+	margin: 20px 0 30px !important;
+	text-align: center;
+	width: 100%;
+}
+
+.form-control.comment-field {
+	display: inline;
+	width: 70%;
+}
+
+.card-block {
+	height: 100px;
+}
+
+.editable {
+	cursor: pointer;
+}
+
+.editable:hover {
+	background: yellow;
+}

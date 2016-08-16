@@ -1,0 +1,9 @@
+client/node_modules
+client/bundle.js
+client/npm-debug.log
+client/.eslintrc.json
+
+server/.eslintrc.json
+server/node_modules
+server/config.js
+server/config/config.json
