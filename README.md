@@ -9,15 +9,22 @@ The project includes a Node authentication/content server and a React/Redux/Webp
 ####Server#####
 Create a MySQL database on your system.
 
-Cd into server directory, install dependencies, create and seed database tables:
+Cd into server directory and install dependencies:
 ```
 	> cd server
 	> npm install
-	> npm run setup
 ```
 
 In "/server/config/" rename "config.default.json" to "config.json" and fill in your database details.
+
 In "/server" rename "config.default.js" to "config.js" and change the secret key if you want to.
+
+
+Create and seed database tables:
+
+```
+	> npm run setup
+```
 
 Start the server:
 ```
