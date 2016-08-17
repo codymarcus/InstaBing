@@ -1,3 +1,5 @@
+npm-debug.log
+
 client/node_modules
 client/bundle.js
 client/npm-debug.log
