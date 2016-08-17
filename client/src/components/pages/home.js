@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ImageCardList from './image_card_list';
+import ImageCardList from '../image_card_list';
 
 export default function Home() {
   return (

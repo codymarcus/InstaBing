@@ -1,25 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import jwtDecode from 'jwt-decode';
 
 import App from './components/app';
-import Home from './components/home';
+import Home from './components/pages/home';
 import RequireAuth from './components/auth/require_auth';
-import Search from './components/search';
+import Search from './components/pages/search';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
-import User from './components/user';
+import User from './components/pages/user';
 
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = compose(
+  applyMiddleware(reduxThunk), window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore)(reducers);
 
 const token = localStorage.getItem('token');
 // If we have a token, consider the user to be signed in

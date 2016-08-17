@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
-import ImageCardList from './image_card_list';
+import ImageCardList from '../image_card_list';
 
 class User extends Component {
   componentWillMount() {

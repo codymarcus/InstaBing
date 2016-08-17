@@ -32,7 +32,7 @@ exports.signup = function(req, res) {
 
     User.findOne({ where: { username: username } }).then(function(existingUserWithName) {
 
-      // If a user with the name does exist, return an error
+      // If a user with the username does exist, return an error
       if (existingUserWithName) {
         return res.status(422).send({ error: 'Username is in use' });
       }

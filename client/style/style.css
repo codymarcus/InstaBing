@@ -16,7 +16,11 @@
 }
 
 .image-wrapper {
+	align-items:center;
+	background: #f3f3f3;
+	display: flex;
 	height: 300px;
+	justify-content:center;
 }
 
 .search input {
@@ -43,7 +47,7 @@ h2 {
 }
 
 .card-block {
-	height: 100px;
+	height: 125px;
 }
 
 .editable {
@@ -52,4 +56,16 @@ h2 {
 
 .editable:hover {
 	background: yellow;
+}
+
+.card-img-top {
+	border-radius: 0 !important;
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+}
+
+.card {
+	border-radius: 0 !important;
 }

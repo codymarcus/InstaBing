@@ -1,22 +1,25 @@
 import {
   FETCH_IMAGES,
+  FETCHING_IMAGES,
   UPDATE_COMMENT
 } from '../actions/types';
 
-export default function(state = [], action) {
+export default function(state = { all: [], fetching: false }, action) {
   switch(action.type) {
     case FETCH_IMAGES:
-      return action.payload;
+      return { ...state, all: action.payload, fetching: false };
+    case FETCHING_IMAGES:
+      return { ...state, fetching: true };
     case UPDATE_COMMENT:
-      const nextState = [];
-      for(let image of state) {
+      const nextImages = [];
+      for(let image of state.all) {
         if (image.id === action.imageId) {
-          nextState.push({ ...image, comment: action.comment });
+          nextImages.push({ ...image, comment: action.comment });
         } else {
-          nextState.push(image);
+          nextImages.push(image);
         }
       }
-      return nextState;
+      return { ...state, all: nextImages };
   }
 
   return state;

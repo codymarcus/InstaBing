@@ -4,6 +4,7 @@ import * as actions from '../actions';
 
 import ImageCard from './image_card/image_card';
 import AddableImageCard from './image_card/addable_image_card';
+import ReactSpinner from 'react-spinjs';
 
 class ImageCardList extends Component {
   componentWillMount() {
@@ -32,10 +33,18 @@ class ImageCardList extends Component {
     ));
   }
 
+  renderLoadingOrImages() {
+    if (this.props.fetching) {
+      return <ReactSpinner color="gray" />;
+    }
+
+    return this.renderImageCards();
+  }
+
   render() {
     return (
       <div className="image-card-list">
-        {this.renderImageCards()}
+        {this.renderLoadingOrImages()}
       </div>
     );
   }
@@ -46,11 +55,15 @@ ImageCardList.propTypes = {
   addable: PropTypes.bool,
   fetchImages: PropTypes.func.isRequired,
   userId: PropTypes.number,
-  images: PropTypes.arrayOf(PropTypes.object).isRequired
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 
-function mapStateToProps(state) {
-  return { images: state.images };
+function mapStateToProps({ images }) {
+  return {
+    images: images.all,
+    fetching: images.fetching
+  };
 }
 
 export default connect(mapStateToProps, actions)(ImageCardList);

@@ -6,6 +6,7 @@ import {
   UNAUTH_USER,
   AUTH_ERROR,
   FETCH_IMAGES,
+  FETCHING_IMAGES,
   SELECT_USER,
   CLEAR_USER,
   UPDATE_COMMENT
@@ -69,11 +70,21 @@ export function signoutUser() {
   return { type: UNAUTH_USER };
 }
 
+// Waiting on images from some async call
+function fetchingImages() {
+  return {
+    type: FETCHING_IMAGES
+  };
+}
+
 // Fetch images from API
 export function fetchImages(userId = null) {
   return function(dispatch) {
-    const params = userId ? `?user_id=${userId}` : '';
-    axios.get(`${ROOT_URL}/images${params}`)
+    dispatch(fetchingImages());
+
+    const url = `${ROOT_URL}/images` + (userId ? `?user_id=${userId}` : '');
+
+    axios.get(url)
       .then(response => dispatch({
         type: FETCH_IMAGES,
         payload: response.data
@@ -103,6 +114,8 @@ export function clearUser() {
 // Search images using Bing search API
 export function searchImages(query) {
   return function(dispatch) {
+    dispatch(fetchingImages());
+
     axios.get(`https://api.datamarket.azure.com/Bing/Search/v1/Image?Query=%27${query}%27&$format=json&$top=25`,
       { auth: { password: BING_KEY }}
     )
